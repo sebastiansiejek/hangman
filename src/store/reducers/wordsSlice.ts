@@ -12,12 +12,14 @@ export interface IInitialState {
   words: Array<{ word: string }>
   typedChars: Array<string>
   currentWordIndex: number
+  gameStatus: 'WON' | 'LOST' | 'DURING'
 }
 
 const initialState: IInitialState = {
   words: words.words,
   typedChars: [''],
-  currentWordIndex: 0
+  currentWordIndex: 0,
+  gameStatus: 'DURING'
 }
 
 const wordsSlice = createSlice({
@@ -38,8 +40,10 @@ const wordsSlice = createSlice({
     },
     drawWord(state) {
       const randomIndex = gerRandomNumber(0, state.words.length - 1)
-      console.log(randomIndex)
       state.currentWordIndex = randomIndex
+    },
+    setGameStatus(state, action: PayloadAction<IInitialState['gameStatus']>) {
+      state.gameStatus = action.payload
     }
   }
 })
@@ -52,6 +56,13 @@ export const addChar = (char: string) => async (dispatch: Dispatch) => {
 export const drawWord = () => async (dispatch: Dispatch) => {
   const { drawWord } = wordsSlice.actions
   dispatch(drawWord())
+}
+
+export const setGameStatus = (status: IInitialState['gameStatus']) => async (
+  dispatch: Dispatch
+) => {
+  const { setGameStatus } = wordsSlice.actions
+  dispatch(setGameStatus(status))
 }
 
 //selectors
