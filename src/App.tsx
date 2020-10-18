@@ -4,6 +4,7 @@ import HangMan from './components/HangMan'
 import React from 'react'
 import store from './store/store'
 import { Provider } from 'react-redux'
+import CorrectWord from './components/CorrectWord'
 
 function App() {
   return (
@@ -16,8 +17,9 @@ function App() {
           justifyContent: 'center'
         }}
       >
-        <HangMan />
         <AddChar />
+        <CorrectWord />
+        <HangMan />
       </div>
     </Provider>
   )

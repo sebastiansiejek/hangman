@@ -20,7 +20,7 @@ const initialState: IInitialState = {
 }
 
 const wordsSlice = createSlice({
-  name: 'game',
+  name: 'words',
   initialState,
   reducers: {
     addChar(state, action: PayloadAction<string>) {
