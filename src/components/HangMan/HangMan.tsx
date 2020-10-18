@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from 'react'
 import styled from 'styled-components'
 
 const StyledSvg = styled.svg`
+  display: block;
   max-width: 400px;
 
   path {
@@ -18,7 +19,6 @@ const HangMan = () => {
 
   useEffect(() => {
     if (svgRef !== null) {
-      console.log(svgRef)
     }
   }, [svgRef])
 
