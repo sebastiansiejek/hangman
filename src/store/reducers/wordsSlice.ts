@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction, Dispatch } from '@reduxjs/toolkit'
 import words from '../../data/words.json'
 
 interface initialState {
@@ -32,5 +32,9 @@ const wordsSlice = createSlice({
   }
 })
 
-export const { addChar } = wordsSlice.actions
+export const addChar = (char: string) => async (dispatch: Dispatch) => {
+  const { addChar } = wordsSlice.actions
+  dispatch(addChar(char))
+}
+
 export default wordsSlice
