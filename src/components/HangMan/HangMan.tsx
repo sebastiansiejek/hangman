@@ -14,11 +14,14 @@ const StyledSvg = styled.svg`
   }
 `
 
-const HangMan = () => {
+const HangMan = (props: any) => {
   const svgRef = useRef(null)
 
   useEffect(() => {
-    if (svgRef !== null) {
+    if (svgRef && svgRef.current) {
+      const svg: any = svgRef.current
+      const { children } = svg
+      console.log(children)
     }
   }, [svgRef])
 
