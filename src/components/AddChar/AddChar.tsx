@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 
-const AddWord = () => {
+const AddChar = () => {
   const [inputValue, setValue] = useState('')
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,4 +20,4 @@ const AddWord = () => {
   )
 }
 
-export default AddWord
+export default AddChar

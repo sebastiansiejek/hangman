@@ -3,13 +3,13 @@ import words from '../../data/words.json'
 
 interface initialState {
   words: Array<{ word: string }>
-  sign: string
+  typedChars: Array<string>
   currentWordIndex: number
 }
 
 const initialState: initialState = {
   words: words.words,
-  sign: '',
+  typedChars: [''],
   currentWordIndex: 0
 }
 
@@ -17,8 +17,8 @@ const wordsSlice = createSlice({
   name: 'game',
   initialState,
   reducers: {
-    addSign(state, action: PayloadAction<initialState['sign']>) {
-      state.sign = action.payload
+    addChar(state, action: PayloadAction<string>) {
+      state.typedChars.push(action.payload)
     },
     setWordByIndex(
       state,
@@ -32,5 +32,5 @@ const wordsSlice = createSlice({
   }
 })
 
-export const { addSign } = wordsSlice.actions
+export const { addChar } = wordsSlice.actions
 export default wordsSlice

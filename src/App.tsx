@@ -1,6 +1,6 @@
 // eslint-disable-next-line
 import React from 'react'
-import AddSign from './components/AddSign'
+import AddChar from './components/AddChar'
 import HangMan from './components/HangMan'
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
       }}
     >
       <HangMan />
-      <AddSign />
+      <AddChar />
     </div>
   )
 }
