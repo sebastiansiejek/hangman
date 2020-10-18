@@ -47,6 +47,9 @@ export const addChar = (char: string) => async (dispatch: Dispatch) => {
 export const currentWordIndexSelector = (state: IState) =>
   state.words.currentWordIndex
 export const currentWordsSelector = (state: IState) => state.words.words
+export const typedCharsSelector = (state: IState) => state.words.typedChars
+export const lastTypedCharSelector = (state: IState) =>
+  state.words.typedChars[typedCharsSelector.length - 1]
 export const currentWordSelector = createSelector(
   currentWordIndexSelector,
   currentWordsSelector,

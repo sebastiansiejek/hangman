@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react'
 import styled from 'styled-components'
+import { connect } from 'react-redux'
 
 const StyledSvg = styled.svg`
   display: block;
@@ -7,6 +8,13 @@ const StyledSvg = styled.svg`
 
   path {
     stroke: #000;
+    visibility: hidden;
+    opacity: 0;
+
+    &.is-active {
+      visibility: visible;
+      opacity: 1;
+    }
   }
 
   .path--stand {
@@ -14,16 +22,34 @@ const StyledSvg = styled.svg`
   }
 `
 
-const HangMan = (props: any) => {
+type IProps = {
+  words: Array<{ word: string }>
+  char: string
+  currentWordIndex: number
+}
+
+const HangMan = ({ char, words, currentWordIndex }: IProps) => {
   const svgRef = useRef(null)
 
   useEffect(() => {
     if (svgRef && svgRef.current) {
       const svg: any = svgRef.current
       const { children } = svg
-      console.log(children)
+
+      if (!words[currentWordIndex].word.includes(char)) {
+        const activesElems = [...children].filter((child: any) =>
+          child.classList.contains('is-active')
+        )
+        if (activesElems.length) {
+          const lastActive = activesElems[activesElems.length - 1]
+          lastActive &&
+            lastActive.nextSibling &&
+            lastActive.nextSibling.classList.add('is-active')
+        }
+        children[0].classList.add('is-active')
+      }
     }
-  }, [svgRef])
+  })
 
   return (
     <StyledSvg id="hangman-image" viewBox="0 0 513.2 675" ref={svgRef}>
@@ -61,4 +87,9 @@ const HangMan = (props: any) => {
   )
 }
 
-export default HangMan
+const mapStateToProps = (state: any) => {
+  const { typedChars, words, currentWordIndex } = state.words
+  return { char: typedChars[typedChars.length - 1], words, currentWordIndex }
+}
+
+export default connect(mapStateToProps)(HangMan)
