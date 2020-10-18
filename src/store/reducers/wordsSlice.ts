@@ -5,6 +5,7 @@ import {
   createSelector
 } from '@reduxjs/toolkit'
 import words from '../../data/words.json'
+import { gerRandomNumber } from '../../utils/utils'
 import { IState } from '../store'
 
 export interface IInitialState {
@@ -34,6 +35,11 @@ const wordsSlice = createSlice({
     },
     setWords(state, action: PayloadAction<IInitialState['words']>) {
       state.words = action.payload
+    },
+    drawWord(state) {
+      const randomIndex = gerRandomNumber(0, state.words.length - 1)
+      console.log(randomIndex)
+      state.currentWordIndex = randomIndex
     }
   }
 })
@@ -41,6 +47,11 @@ const wordsSlice = createSlice({
 export const addChar = (char: string) => async (dispatch: Dispatch) => {
   const { addChar } = wordsSlice.actions
   dispatch(addChar(char))
+}
+
+export const drawWord = () => async (dispatch: Dispatch) => {
+  const { drawWord } = wordsSlice.actions
+  dispatch(drawWord())
 }
 
 //selectors
