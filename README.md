@@ -1,6 +1,8 @@
-![alt text](./demo.png "Demo")
+# Simple hangman game in react
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Demo
+
+https://ss-hangman.herokuapp.com
 
 ## Available Scripts
 
